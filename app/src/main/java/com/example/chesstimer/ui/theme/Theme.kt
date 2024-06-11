@@ -10,10 +10,20 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import com.example.chesstimer.R
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -68,3 +78,66 @@ fun ChessTimerTheme(
         content = content
     )
 }
+
+object ChessTheme {
+    val ctTypography: TmTypography
+        @Composable get() = TmTypography()
+    val fonts: Fonts = Fonts()
+    val ctDimensions: CtDimensions
+        @Composable get() = CtDimensions()
+    val ctColors: CtColors
+        @Composable get() = CtColors()
+
+}
+
+data class TmTypography(
+    val inputField: TextStyle = TextStyle(
+        fontSize = 16.sp,
+        fontFamily = ChessTheme.fonts.robotoLight,
+        fontWeight = FontWeight(300),
+        color = Color(0xFF34303D),
+        platformStyle = PlatformTextStyle(
+            includeFontPadding = false
+        )
+    ),
+    val timer: TextStyle = TextStyle(
+        fontSize = 100.sp,
+        lineHeight = 100.sp,
+        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontWeight = FontWeight(550),
+        color = Color.Black,
+        letterSpacing = 5.sp
+    ),
+    val timerActivated: TextStyle = TextStyle(
+        fontSize = 100.sp,
+        lineHeight = 100.sp,
+        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontWeight = FontWeight(550),
+        color = Color.White,
+        letterSpacing = 5.sp
+    ),
+)
+
+data class Fonts(
+    val freigeistMedium: FontFamily = FontFamily(Font(R.font.freigeist_xconmedium)),
+    val freigeistBold: FontFamily = FontFamily(Font(R.font.freigeist_xconbold)),
+    val robotoMedium: FontFamily = FontFamily(Font(R.font.roboto_medium)),
+    val robotoBold: FontFamily = FontFamily(Font(R.font.roboto_bold)),
+    val robotoLight: FontFamily = FontFamily(Font(R.font.roboto_light)),
+    val robotoRegular: FontFamily = FontFamily(Font(R.font.roboto_regular))
+)
+
+data class CtDimensions(
+    val paddingXs: Dp = 4.dp,
+    val paddingS: Dp = 8.dp,
+    val paddingL: Dp = 12.dp,
+    val padding: Dp = 16.dp,
+    val paddingMedium: Dp = 20.dp,
+    val paddingXL: Dp = 24.dp,
+    val paddingXXL: Dp = 30.dp,
+    val dialogPadding: Dp = 50.dp
+)
+
+data class CtColors(
+    val timerActivated: Color = Color(0xFF388E3C),
+)
