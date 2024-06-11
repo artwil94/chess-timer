@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Chess Timer</string>
+
+    <string name="content_description_reset">Reset</string>
+    <string name="content_description_play">Play</string>
+    <string name="content_description_pause">Pause</string>
 </resources>

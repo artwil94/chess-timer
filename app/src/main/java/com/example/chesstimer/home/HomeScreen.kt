@@ -1,15 +1,14 @@
 package com.example.chesstimer.home
 
+import android.media.MediaPlayer
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -23,8 +22,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import com.example.chesstimer.R
 import com.example.chesstimer.composable.ChangeSystemBarColor
 import com.example.chesstimer.ui.theme.ChessTheme
@@ -32,21 +32,23 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen() {
-    var timeLeftPlayer1 by remember { mutableStateOf(300) }
-    var timeLeftPlayer2 by remember { mutableStateOf(300) }
-    var isPlayer1Active by remember { mutableStateOf(false) }
+    var timeLeftPlayerFirst by remember { mutableStateOf(300) }
+    var timeLeftPlayerSecond by remember { mutableStateOf(300) }
+    var isPlayerFirstActive by remember { mutableStateOf(false) }
     var isTimerRunning by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val mediaPlayer = remember { MediaPlayer.create(context, R.raw.clock_switch) }
     ChangeSystemBarColor(
-        statusBarColor = if (isPlayer1Active && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray,
-        navigationBarColor = if (!isPlayer1Active && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray
+        statusBarColor = if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray,
+        navigationBarColor = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray
     )
-    LaunchedEffect(isTimerRunning, isPlayer1Active) {
+    LaunchedEffect(isTimerRunning, isPlayerFirstActive) {
         if (isTimerRunning) {
             while (true) {
-                if (isPlayer1Active) {
-                    timeLeftPlayer1 = (timeLeftPlayer1 - 1).coerceAtLeast(0)
+                if (isPlayerFirstActive) {
+                    timeLeftPlayerFirst = (timeLeftPlayerFirst - 1).coerceAtLeast(0)
                 } else {
-                    timeLeftPlayer2 = (timeLeftPlayer2 - 1).coerceAtLeast(0)
+                    timeLeftPlayerSecond = (timeLeftPlayerSecond - 1).coerceAtLeast(0)
                 }
                 delay(1000)
             }
@@ -60,20 +62,20 @@ fun HomeScreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(if (isPlayer1Active && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
+                .background(if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
                 .weight(1f)
                 .graphicsLayer(rotationZ = 180f)
                 .clickable {
-                    isPlayer1Active = !isPlayer1Active
+                    isPlayerFirstActive = false
                     isTimerRunning = true
+                    mediaPlayer.start()
                 },
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = formatTime(timeLeftPlayer1),
-                style = if (isPlayer1Active && isTimerRunning) ChessTheme.ctTypography.timerActivated else ChessTheme.ctTypography.timer
+                text = formatTime(timeLeftPlayerFirst),
+                style = if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctTypography.timerActivated else ChessTheme.ctTypography.timer
             )
-
         }
         Row(
             modifier = Modifier
@@ -84,19 +86,18 @@ fun HomeScreen() {
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_reset),
-                contentDescription = "reset",
+                contentDescription = stringResource(id = R.string.content_description_reset),
                 tint = Color.White
             )
-//            Spacer(modifier = Modifier.weight(1f))
             Icon(
                 modifier = Modifier.clickable {
                     isTimerRunning = !isTimerRunning
                 },
                 painter = painterResource(id = if (isTimerRunning) R.drawable.ic_pause else R.drawable.ic_play),
-                contentDescription = "reset",
+                contentDescription = if (isTimerRunning) stringResource(id = R.string.content_description_pause)
+                else stringResource(id = R.string.content_description_play),
                 tint = Color.White
             )
-//            Spacer(modifier = Modifier.weight(1f))
             Icon(
                 modifier = Modifier.clickable {
                 },
@@ -108,19 +109,19 @@ fun HomeScreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(if (!isPlayer1Active && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
+                .background(if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
                 .weight(1f)
                 .clickable {
-                    isPlayer1Active = !isPlayer1Active
+                    isPlayerFirstActive = !isPlayerFirstActive
                     isTimerRunning = true
+                    mediaPlayer.start()
                 },
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = formatTime(timeLeftPlayer2),
-                style = if (!isPlayer1Active && isTimerRunning) ChessTheme.ctTypography.timerActivated else ChessTheme.ctTypography.timer
+                text = formatTime(timeLeftPlayerSecond),
+                style = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctTypography.timerActivated else ChessTheme.ctTypography.timer
             )
-
         }
     }
 }
