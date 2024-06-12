@@ -37,7 +37,7 @@ fun TimeBottomSheet(
     bottomSheetState: ModalBottomSheetState,
 ) {
     val coroutine = rememberCoroutineScope()
-    val selectedTimeIndex = remember { mutableIntStateOf(-1) }
+    val selectedTimeIndex = remember { mutableIntStateOf(3) }
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
         sheetShape = ChessTheme.ctShapes.bottomSheet,
@@ -84,7 +84,18 @@ fun TimeBottomSheet(
                         coroutine.launch {
                             bottomSheetState.hide()
                         }
-                    }
+                    },
+                    color = ChessTheme.ctColors.timerActivated
+                )
+                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.padding))
+                ActionButton(
+                    text = "Cancel",
+                    onClick = {
+                        coroutine.launch {
+                            bottomSheetState.hide()
+                        }
+                    },
+                    color = ChessTheme.ctColors.textPrimary
                 )
                 Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingMedium))
             }

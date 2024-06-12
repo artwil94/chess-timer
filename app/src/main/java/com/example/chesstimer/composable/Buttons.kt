@@ -24,9 +24,8 @@ fun ActionButton(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = ChessTheme.ctColors.actionButton,
-    inverted: Boolean = false,
     @DrawableRes leadingIcon: Int? = null,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     Button(
         onClick = { onClick.invoke() },
@@ -53,7 +52,7 @@ fun ActionButton(
             }
             Text(
                 text = text.uppercase(),
-                style = ChessTheme.ctTypography.actionButton
+                style =  ChessTheme.ctTypography.actionButtonWhite
             )
         }
     }

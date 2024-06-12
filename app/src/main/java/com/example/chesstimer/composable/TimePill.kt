@@ -30,8 +30,8 @@ fun TimePill(
         modifier = Modifier
             .width(80.dp)
             .background(
-                color = if (selected) ChessTheme.ctColors.actionButton else Color.LightGray,
-                shape = ChessTheme.ctShapes.timePill2
+                color = if (selected) ChessTheme.ctColors.timerActivated else Color.LightGray,
+                shape = ChessTheme.ctShapes.timePill
             )
             .clickable {
                 onClick.invoke()
@@ -46,7 +46,8 @@ fun TimePill(
                 bottom = ChessTheme.ctDimensions.paddingS
             ),
             text = text,
-            style = ChessTheme.ctTypography.timePill
+            style = if (selected) ChessTheme.ctTypography.timePillSelected
+            else ChessTheme.ctTypography.timePill
         )
     }
 }

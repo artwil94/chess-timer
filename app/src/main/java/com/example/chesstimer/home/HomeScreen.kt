@@ -33,12 +33,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.chesstimer.R
 import com.example.chesstimer.composable.ChangeSystemBarColor
+import com.example.chesstimer.composable.ConfirmationDialog
 import com.example.chesstimer.composable.TimeBottomSheet
 import com.example.chesstimer.ui.theme.ChessTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 const val DEFAULT_TIME_PILL_INDEX = 3
+const val DEFAULT_TIME = 600
 
 @ExperimentalLayoutApi
 @ExperimentalMaterialApi
@@ -47,7 +49,8 @@ fun HomeScreen() {
     val coroutine = rememberCoroutineScope()
     val timesInt = listOf(1, 3, 5, 10, 15, 30, 60, 120)
     val selectedTimeIndex = remember { mutableIntStateOf(DEFAULT_TIME_PILL_INDEX) }
-    var timeLeftPlayerFirst  by remember { mutableIntStateOf(timesInt[selectedTimeIndex.intValue] * 60) }
+    val selectedTime = remember { mutableIntStateOf(DEFAULT_TIME) }
+    var timeLeftPlayerFirst by remember { mutableIntStateOf(timesInt[selectedTimeIndex.intValue] * 60) }
     var timeLeftPlayerSecond by remember { mutableIntStateOf(timesInt[selectedTimeIndex.intValue] * 60) }
     var isPlayerFirstActive by remember { mutableStateOf(false) }
     var isTimerRunning by remember { mutableStateOf(false) }
@@ -57,6 +60,7 @@ fun HomeScreen() {
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true
     )
+    var showConfirmationDialog by remember { mutableStateOf(false) }
     ChangeSystemBarColor(
         statusBarColor = if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray,
         navigationBarColor = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray
@@ -104,6 +108,10 @@ fun HomeScreen() {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Icon(
+                modifier = Modifier.clickable {
+                    isTimerRunning = false
+                    showConfirmationDialog = true
+                },
                 painter = painterResource(id = R.drawable.ic_reset),
                 contentDescription = stringResource(id = R.string.content_description_reset),
                 tint = Color.White
@@ -121,10 +129,11 @@ fun HomeScreen() {
                 modifier = Modifier.clickable {
                     coroutine.launch {
                         timeBottomSheet.show()
+                        isTimerRunning = false
                     }
                 },
                 painter = painterResource(id = R.drawable.ic_hourglass),
-                contentDescription = "reset",
+                contentDescription = stringResource(id = R.string.content_description_change_time),
                 tint = Color.White
             )
         }
@@ -147,18 +156,38 @@ fun HomeScreen() {
         }
     }
     TimeBottomSheet(
-        title = "Choose time",
+        title = stringResource(id = R.string.choose_time),
         times = timesInt,
         bottomSheetState = timeBottomSheet,
         onDone = { time ->
             timeLeftPlayerFirst = timesInt[time] * 60
             timeLeftPlayerSecond = timesInt[time] * 60
+            selectedTime.intValue = timesInt[time] * 60
         }
     )
+    if (showConfirmationDialog) {
+        ConfirmationDialog(
+            title = stringResource(id = R.string.reset_clock),
+            confirmText = stringResource(id = R.string.confirm),
+            message = stringResource(id = R.string.reset_clock_message),
+            cancelText = stringResource(id = R.string.cancel),
+            onConfirm = {
+                timeLeftPlayerFirst = selectedTime.intValue
+                timeLeftPlayerSecond = selectedTime.intValue
+                showConfirmationDialog = false
+            },
+            onCancel = { showConfirmationDialog = false }
+        )
+    }
 }
 
 fun formatTime(seconds: Int): String {
-    val minutes = seconds / 60
+    val hours = seconds / 3600
+    val minutes = (seconds % 3600) / 60
     val remainingSeconds = seconds % 60
-    return String.format("%2d:%02d", minutes, remainingSeconds)
+    return if (seconds >= 3600) {
+        String.format("%d:%02d:%02d", hours, minutes, remainingSeconds)
+    } else {
+        String.format("%2d:%02d", minutes, remainingSeconds)
+    }
 }

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -99,7 +100,7 @@ data class TmTypography(
         fontSize = 16.sp,
         fontFamily = ChessTheme.fonts.robotoLight,
         fontWeight = FontWeight(300),
-        color = Color(0xFF34303D),
+        color =  Color(0xFF333333),
         platformStyle = PlatformTextStyle(
             includeFontPadding = false
         )
@@ -109,7 +110,7 @@ data class TmTypography(
         lineHeight = 100.sp,
         fontFamily = ChessTheme.fonts.freigeistMedium,
         fontWeight = FontWeight(550),
-        color = Color.Black,
+        color =  Color(0xFF333333),
         letterSpacing = 5.sp
     ),
     val timerActivated: TextStyle = TextStyle(
@@ -125,7 +126,7 @@ data class TmTypography(
         lineHeight = 28.sp,
         fontFamily = ChessTheme.fonts.freigeistMedium,
         fontWeight = FontWeight(550),
-        color = Color.Black
+        color =  Color(0xFF333333),
     ),
     val actionButton: TextStyle = TextStyle(
         fontSize = 16.sp,
@@ -134,11 +135,40 @@ data class TmTypography(
         fontWeight = FontWeight(550),
         color = Color(0xFF333333),
     ),
+    val actionButtonWhite: TextStyle = TextStyle(
+        fontSize = 16.sp,
+        lineHeight = 22.sp,
+        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontWeight = FontWeight(550),
+        color = Color.White,
+    ),
     val timePill: TextStyle = TextStyle(
         fontSize = 18.sp,
         fontWeight = FontWeight(550),
-        color = Color(0xFF2E2D40),
+        color =  Color(0xFF333333),
         fontFamily = ChessTheme.fonts.freigeistMedium
+    ),
+    val timePillSelected: TextStyle = TextStyle(
+        fontSize = 18.sp,
+        fontWeight = FontWeight(550),
+        color =  Color.White,
+        fontFamily = ChessTheme.fonts.freigeistMedium
+    ),
+    val confirmationDialogTitle: TextStyle = TextStyle(
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        fontWeight = FontWeight(550),
+        color = Color(0xFF333333),
+        fontFamily = ChessTheme.fonts.freigeistMedium,
+        textAlign = TextAlign.Center
+    ),
+    val confirmationDialogMessage: TextStyle = TextStyle(
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        fontWeight = FontWeight(300),
+        color = Color(0xFF333333),
+        fontFamily = ChessTheme.fonts.robotoLight,
+        textAlign = TextAlign.Center
     ),
 )
 
@@ -164,11 +194,12 @@ data class CtDimensions(
 
 data class CtColors(
     val timerActivated: Color = Color(0xFF388E3C),
-    val actionButton: Color = Color(0xFF8BC34A),
+    val actionButton: Color = Color(0x3c8BC34A),
+    val textPrimary : Color = Color(0xFF333333),
 )
 
 data class CtShapes(
     val bottomSheet: Shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
-    val timePill: Shape = RoundedCornerShape(size = 1000.dp),
-    val timePill2: Shape = RoundedCornerShape(size = 10.dp),
+    val timePill: Shape = RoundedCornerShape(size = 10.dp),
+    val confirmationDialog: Shape = timePill
 )
