@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Chess Timer</string>
 
+    <string name="time_pill_min">%d min</string>
+
     <string name="content_description_reset">Reset</string>
     <string name="content_description_play">Play</string>
     <string name="content_description_pause">Pause</string>
+    <string name="content_description_change_time">Change time</string>
 </resources>

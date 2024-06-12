@@ -3,6 +3,7 @@ package com.example.chesstimer.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -11,6 +12,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -87,6 +89,8 @@ object ChessTheme {
         @Composable get() = CtDimensions()
     val ctColors: CtColors
         @Composable get() = CtColors()
+    val ctShapes: CtShapes
+        @Composable get() = CtShapes()
 
 }
 
@@ -116,6 +120,26 @@ data class TmTypography(
         color = Color.White,
         letterSpacing = 5.sp
     ),
+    val timeBottomSheetTitle: TextStyle = TextStyle(
+        fontSize = 24.sp,
+        lineHeight = 28.sp,
+        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontWeight = FontWeight(550),
+        color = Color.Black
+    ),
+    val actionButton: TextStyle = TextStyle(
+        fontSize = 16.sp,
+        lineHeight = 22.sp,
+        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontWeight = FontWeight(550),
+        color = Color(0xFF333333),
+    ),
+    val timePill: TextStyle = TextStyle(
+        fontSize = 18.sp,
+        fontWeight = FontWeight(550),
+        color = Color(0xFF2E2D40),
+        fontFamily = ChessTheme.fonts.freigeistMedium
+    ),
 )
 
 data class Fonts(
@@ -140,4 +164,11 @@ data class CtDimensions(
 
 data class CtColors(
     val timerActivated: Color = Color(0xFF388E3C),
+    val actionButton: Color = Color(0xFF8BC34A),
+)
+
+data class CtShapes(
+    val bottomSheet: Shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
+    val timePill: Shape = RoundedCornerShape(size = 1000.dp),
+    val timePill2: Shape = RoundedCornerShape(size = 10.dp),
 )

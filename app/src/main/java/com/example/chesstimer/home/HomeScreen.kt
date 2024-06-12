@@ -6,17 +6,23 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,17 +33,30 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.chesstimer.R
 import com.example.chesstimer.composable.ChangeSystemBarColor
+import com.example.chesstimer.composable.TimeBottomSheet
 import com.example.chesstimer.ui.theme.ChessTheme
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
+const val DEFAULT_TIME_PILL_INDEX = 3
+
+@ExperimentalLayoutApi
+@ExperimentalMaterialApi
 @Composable
 fun HomeScreen() {
-    var timeLeftPlayerFirst by remember { mutableStateOf(300) }
-    var timeLeftPlayerSecond by remember { mutableStateOf(300) }
+    val coroutine = rememberCoroutineScope()
+    val timesInt = listOf(1, 3, 5, 10, 15, 30, 60, 120)
+    val selectedTimeIndex = remember { mutableIntStateOf(DEFAULT_TIME_PILL_INDEX) }
+    var timeLeftPlayerFirst  by remember { mutableIntStateOf(timesInt[selectedTimeIndex.intValue] * 60) }
+    var timeLeftPlayerSecond by remember { mutableIntStateOf(timesInt[selectedTimeIndex.intValue] * 60) }
     var isPlayerFirstActive by remember { mutableStateOf(false) }
     var isTimerRunning by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val mediaPlayer = remember { MediaPlayer.create(context, R.raw.clock_switch) }
+    val timeBottomSheet = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        skipHalfExpanded = true
+    )
     ChangeSystemBarColor(
         statusBarColor = if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray,
         navigationBarColor = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray
@@ -100,6 +119,9 @@ fun HomeScreen() {
             )
             Icon(
                 modifier = Modifier.clickable {
+                    coroutine.launch {
+                        timeBottomSheet.show()
+                    }
                 },
                 painter = painterResource(id = R.drawable.ic_hourglass),
                 contentDescription = "reset",
@@ -124,10 +146,19 @@ fun HomeScreen() {
             )
         }
     }
+    TimeBottomSheet(
+        title = "Choose time",
+        times = timesInt,
+        bottomSheetState = timeBottomSheet,
+        onDone = { time ->
+            timeLeftPlayerFirst = timesInt[time] * 60
+            timeLeftPlayerSecond = timesInt[time] * 60
+        }
+    )
 }
 
 fun formatTime(seconds: Int): String {
     val minutes = seconds / 60
     val remainingSeconds = seconds % 60
-    return String.format("%02d:%02d", minutes, remainingSeconds)
+    return String.format("%2d:%02d", minutes, remainingSeconds)
 }
