@@ -28,7 +28,7 @@ fun TimePill(
 ) {
     Box(
         modifier = Modifier
-            .width(80.dp)
+            .width(100.dp)
             .background(
                 color = if (selected) ChessTheme.ctColors.timerActivated else Color.LightGray,
                 shape = ChessTheme.ctShapes.timePill
@@ -40,8 +40,8 @@ fun TimePill(
     ) {
         Text(
             modifier = Modifier.padding(
-                start = ChessTheme.ctDimensions.padding,
-                end = ChessTheme.ctDimensions.padding,
+                start = ChessTheme.ctDimensions.paddingL,
+                end = ChessTheme.ctDimensions.paddingL,
                 top = ChessTheme.ctDimensions.paddingS,
                 bottom = ChessTheme.ctDimensions.paddingS
             ),

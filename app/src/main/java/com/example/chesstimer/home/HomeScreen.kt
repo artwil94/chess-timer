@@ -50,6 +50,7 @@ fun HomeScreen() {
     val timesInt = listOf(1, 3, 5, 10, 15, 30, 60, 120)
     val selectedTimeIndex = remember { mutableIntStateOf(DEFAULT_TIME_PILL_INDEX) }
     val selectedTime = remember { mutableIntStateOf(DEFAULT_TIME) }
+    val selectedTimeFor2Player = remember { mutableIntStateOf(DEFAULT_TIME) }
     var timeLeftPlayerFirst by remember { mutableIntStateOf(timesInt[selectedTimeIndex.intValue] * 60) }
     var timeLeftPlayerSecond by remember { mutableIntStateOf(timesInt[selectedTimeIndex.intValue] * 60) }
     var isPlayerFirstActive by remember { mutableStateOf(false) }
@@ -163,6 +164,11 @@ fun HomeScreen() {
             timeLeftPlayerFirst = timesInt[time] * 60
             timeLeftPlayerSecond = timesInt[time] * 60
             selectedTime.intValue = timesInt[time] * 60
+            selectedTimeFor2Player.intValue = timesInt[time] * 60
+        },
+        onChangeTimeForSecondPlayer = { time2 ->
+            selectedTimeFor2Player.intValue = timesInt[time2] * 60
+            timeLeftPlayerSecond = timesInt[time2] * 60
         }
     )
     if (showConfirmationDialog) {
@@ -173,7 +179,7 @@ fun HomeScreen() {
             cancelText = stringResource(id = R.string.cancel),
             onConfirm = {
                 timeLeftPlayerFirst = selectedTime.intValue
-                timeLeftPlayerSecond = selectedTime.intValue
+                timeLeftPlayerSecond = selectedTimeFor2Player.intValue
                 showConfirmationDialog = false
             },
             onCancel = { showConfirmationDialog = false }
