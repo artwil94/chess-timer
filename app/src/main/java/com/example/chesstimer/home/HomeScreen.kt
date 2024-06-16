@@ -89,7 +89,7 @@ fun HomeScreen() {
                 .background(if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
                 .weight(1f)
                 .graphicsLayer(rotationZ = 180f)
-                .clickable {
+                .clickable(enabled = isPlayerFirstActive) {
                     isPlayerFirstActive = false
                     isTimerRunning = true
                     mediaPlayer.start()
@@ -143,7 +143,7 @@ fun HomeScreen() {
                 .fillMaxWidth()
                 .background(if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
                 .weight(1f)
-                .clickable {
+                .clickable(enabled = !isPlayerFirstActive) {
                     isPlayerFirstActive = !isPlayerFirstActive
                     isTimerRunning = true
                     mediaPlayer.start()
