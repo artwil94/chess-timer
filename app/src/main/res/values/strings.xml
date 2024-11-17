@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Chess Timer</string>
+
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="time_pill_min">%d min</string>
+    <string name="reset_clock">Reset Clock</string>
+    <string name="reset_clock_message">Are you sure you want to reset the clock?</string>
+    <string name="choose_time">Choose time</string>
+    <string name="equal_time_for_both_players">Equal time for both players</string>
+    <string name="player_first">Player 1</string>
+    <string name="player_second">Player 2</string>
+
+    <string name="content_description_reset">Reset</string>
+    <string name="content_description_play">Play</string>
+    <string name="content_description_pause">Pause</string>
+    <string name="content_description_change_time">Change time</string>
 </resources>
