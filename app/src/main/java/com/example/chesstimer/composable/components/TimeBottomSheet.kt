@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -47,6 +48,7 @@ fun TimeBottomSheet(
     val selectedTimeIndex = remember { mutableIntStateOf(DEFAULT_TIME_PILL_INDEX) }
     val selectedTimePlayer2 = remember { mutableIntStateOf(3) }
     var equalTimeForBothPlayers by remember { mutableStateOf(true) }
+
     BottomSheet(onDismiss = onDismiss) {
         Column(
             modifier = Modifier
@@ -55,7 +57,7 @@ fun TimeBottomSheet(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(ChessTheme.dimensions.dialogPadding))
+            Spacer(modifier = Modifier.height(ChessTheme.dimensions.padding))
             Text(
                 modifier = Modifier.align(Alignment.Start),
                 text = title,
@@ -78,7 +80,8 @@ fun TimeBottomSheet(
                         equalTimeForBothPlayers = !equalTimeForBothPlayers
                     },
                     painter = painterResource(id = if (equalTimeForBothPlayers) R.drawable.ic_checkbox_yes else R.drawable.ic_checkbox_no),
-                    contentDescription = null
+                    contentDescription = null,
+                    tint = Color.Black
                 )
             }
             Spacer(modifier = Modifier.height(ChessTheme.dimensions.paddingXL))

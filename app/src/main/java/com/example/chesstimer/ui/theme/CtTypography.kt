@@ -20,15 +20,15 @@ data class CtTypography(
     val timer: TextStyle = TextStyle(
         fontSize = 100.sp,
         lineHeight = 100.sp,
-        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontFamily = ChessTheme.fonts.rubikMedium,
         fontWeight = FontWeight(550),
         color = Color(0xFF333333),
-        letterSpacing = 5.sp
+        letterSpacing = 3.sp
     ),
     val timerActivated: TextStyle = TextStyle(
         fontSize = 100.sp,
         lineHeight = 100.sp,
-        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontFamily = ChessTheme.fonts.rubikMedium,
         fontWeight = FontWeight(550),
         color = Color.White,
         letterSpacing = 5.sp
@@ -36,21 +36,21 @@ data class CtTypography(
     val timeBottomSheetTitle: TextStyle = TextStyle(
         fontSize = 24.sp,
         lineHeight = 28.sp,
-        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontFamily = ChessTheme.fonts.rubikMedium,
         fontWeight = FontWeight(550),
         color = Color(0xFF333333),
     ),
     val actionButton: TextStyle = TextStyle(
         fontSize = 16.sp,
         lineHeight = 22.sp,
-        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontFamily = ChessTheme.fonts.rubikMedium,
         fontWeight = FontWeight(550),
         color = Color(0xFF333333),
     ),
     val actionButtonWhite: TextStyle = TextStyle(
         fontSize = 16.sp,
         lineHeight = 22.sp,
-        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontFamily = ChessTheme.fonts.rubikMedium,
         fontWeight = FontWeight(550),
         color = Color.White,
     ),
@@ -58,20 +58,20 @@ data class CtTypography(
         fontSize = 18.sp,
         fontWeight = FontWeight(550),
         color = Color(0xFF333333),
-        fontFamily = ChessTheme.fonts.freigeistMedium
+        fontFamily = ChessTheme.fonts.rubikMedium
     ),
     val timePillSelected: TextStyle = TextStyle(
         fontSize = 18.sp,
         fontWeight = FontWeight(550),
         color = Color.White,
-        fontFamily = ChessTheme.fonts.freigeistMedium
+        fontFamily = ChessTheme.fonts.rubikMedium
     ),
     val confirmationDialogTitle: TextStyle = TextStyle(
         fontSize = 20.sp,
         lineHeight = 28.sp,
         fontWeight = FontWeight(550),
         color = Color(0xFF333333),
-        fontFamily = ChessTheme.fonts.freigeistMedium,
+        fontFamily = ChessTheme.fonts.rubikMedium,
         textAlign = TextAlign.Center
     ),
     val confirmationDialogMessage: TextStyle = TextStyle(
