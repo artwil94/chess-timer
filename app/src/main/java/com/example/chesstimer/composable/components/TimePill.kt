@@ -1,4 +1,4 @@
-package com.example.chesstimer.composable
+package com.example.chesstimer.composable.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,8 +34,8 @@ fun TimePill(
     ) {
         Text(
             modifier = Modifier.padding(
-                start = ChessTheme.ctDimensions.paddingL,
-                end = ChessTheme.ctDimensions.paddingL,
+                start = ChessTheme.ctDimensions.paddingM,
+                end = ChessTheme.ctDimensions.paddingM,
                 top = ChessTheme.ctDimensions.paddingS,
                 bottom = ChessTheme.ctDimensions.paddingS
             ),

@@ -1,4 +1,4 @@
-package com.example.chesstimer.composable
+package com.example.chesstimer.composable.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -56,14 +56,14 @@ fun ConfirmationDialog(
                         style = ChessTheme.ctTypography.confirmationDialogMessage
                     )
                 }
-                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingXL))
+                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingL))
                 ActionButton(
                     modifier = Modifier.fillMaxWidth(),
                     text = confirmText,
                     onClick = { onConfirm.invoke() },
                     color = ChessTheme.ctColors.timerActivated
                 )
-                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingL))
+                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingM))
                 cancelText?.let {
                     ActionButton(
                         modifier = Modifier.fillMaxWidth(),

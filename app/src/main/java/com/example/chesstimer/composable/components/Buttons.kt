@@ -1,4 +1,4 @@
-package com.example.chesstimer.composable
+package com.example.chesstimer.composable.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.PaddingValues

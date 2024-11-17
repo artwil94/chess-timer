@@ -1,6 +1,5 @@
 package com.example.chesstimer.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,12 +9,9 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -25,7 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.WindowCompat
 import com.example.chesstimer.R
 
 private val DarkColorScheme = darkColorScheme(
@@ -66,14 +61,6 @@ fun ChessTimerTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
 
     MaterialTheme(
         colorScheme = colorScheme,
@@ -100,7 +87,7 @@ data class TmTypography(
         fontSize = 16.sp,
         fontFamily = ChessTheme.fonts.robotoLight,
         fontWeight = FontWeight(300),
-        color =  Color(0xFF333333),
+        color = Color(0xFF333333),
         platformStyle = PlatformTextStyle(
             includeFontPadding = false
         )
@@ -110,7 +97,7 @@ data class TmTypography(
         lineHeight = 100.sp,
         fontFamily = ChessTheme.fonts.freigeistMedium,
         fontWeight = FontWeight(550),
-        color =  Color(0xFF333333),
+        color = Color(0xFF333333),
         letterSpacing = 5.sp
     ),
     val timerActivated: TextStyle = TextStyle(
@@ -126,7 +113,7 @@ data class TmTypography(
         lineHeight = 28.sp,
         fontFamily = ChessTheme.fonts.freigeistMedium,
         fontWeight = FontWeight(550),
-        color =  Color(0xFF333333),
+        color = Color(0xFF333333),
     ),
     val actionButton: TextStyle = TextStyle(
         fontSize = 16.sp,
@@ -145,13 +132,13 @@ data class TmTypography(
     val timePill: TextStyle = TextStyle(
         fontSize = 18.sp,
         fontWeight = FontWeight(550),
-        color =  Color(0xFF333333),
+        color = Color(0xFF333333),
         fontFamily = ChessTheme.fonts.freigeistMedium
     ),
     val timePillSelected: TextStyle = TextStyle(
         fontSize = 18.sp,
         fontWeight = FontWeight(550),
-        color =  Color.White,
+        color = Color.White,
         fontFamily = ChessTheme.fonts.freigeistMedium
     ),
     val confirmationDialogTitle: TextStyle = TextStyle(
@@ -184,18 +171,18 @@ data class Fonts(
 data class CtDimensions(
     val paddingXs: Dp = 4.dp,
     val paddingS: Dp = 8.dp,
-    val paddingL: Dp = 12.dp,
+    val paddingM: Dp = 12.dp,
     val padding: Dp = 16.dp,
     val paddingMedium: Dp = 20.dp,
-    val paddingXL: Dp = 24.dp,
-    val paddingXXL: Dp = 30.dp,
+    val paddingL: Dp = 24.dp,
+    val paddingXL: Dp = 32.dp,
     val dialogPadding: Dp = 50.dp
 )
 
 data class CtColors(
     val timerActivated: Color = Color(0xFF388E3C),
     val actionButton: Color = Color(0x3c8BC34A),
-    val textPrimary : Color = Color(0xFF333333),
+    val textPrimary: Color = Color(0xFF333333),
 )
 
 data class CtShapes(
