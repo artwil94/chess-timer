@@ -45,6 +45,6 @@ To set up the project locally, follow these steps:
 
 <img width="249" alt="Screenshot1" src="https://github.com/user-attachments/assets/05c58c50-abea-41a1-aff6-b794964ff1bd">
 <img width="250" alt="Screenshot2" src="https://github.com/user-attachments/assets/318d5f90-9c35-49b9-ae65-0e8030865042">
+<img width="248" alt="Screenshot4" src="https://github.com/user-attachments/assets/b2d30ecb-d6df-4464-b7d5-27a9584f949c">
 <img width="249" alt="Screenshot3" src="https://github.com/user-attachments/assets/354cbc61-ba13-46ef-9fec-67a77821c572">
-<img width="252" alt="Screenshot4" src="https://github.com/user-attachments/assets/587193cc-8d71-47bd-92dc-337ffc867348">
 <img width="249" alt="Screenshot5" src="https://github.com/user-attachments/assets/5a8631a8-f012-47c1-895a-3a97cfb1033a">
