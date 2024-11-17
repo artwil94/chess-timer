@@ -56,8 +56,8 @@ fun HomeScreen() {
     var showTimeBottomSheet by remember { mutableStateOf(false) }
     var showConfirmationDialog by remember { mutableStateOf(false) }
     ChangeSystemBarColor(
-        statusBarColor = if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray,
-        navigationBarColor = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray
+        statusBarColor = if (isPlayerFirstActive && isTimerRunning) ChessTheme.colors.timerActivated else Color.LightGray,
+        navigationBarColor = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.colors.timerActivated else Color.LightGray
     )
     LaunchedEffect(isTimerRunning, isPlayerFirstActive) {
         if (isTimerRunning) {
@@ -79,7 +79,7 @@ fun HomeScreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
+                .background(if (isPlayerFirstActive && isTimerRunning) ChessTheme.colors.timerActivated else Color.LightGray)
                 .weight(1f)
                 .graphicsLayer(rotationZ = 180f)
                 .clickable(enabled = isPlayerFirstActive) {
@@ -91,13 +91,13 @@ fun HomeScreen() {
         ) {
             Text(
                 text = formatTime(timeLeftPlayerFirst),
-                style = if (isPlayerFirstActive && isTimerRunning) ChessTheme.ctTypography.timerActivated else ChessTheme.ctTypography.timer
+                style = if (isPlayerFirstActive && isTimerRunning) ChessTheme.typography.timerActivated else ChessTheme.typography.timer
             )
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(ChessTheme.ctDimensions.padding),
+                .padding(ChessTheme.dimensions.padding),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -132,7 +132,7 @@ fun HomeScreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctColors.timerActivated else Color.LightGray)
+                .background(if (!isPlayerFirstActive && isTimerRunning) ChessTheme.colors.timerActivated else Color.LightGray)
                 .weight(1f)
                 .clickable(enabled = !isPlayerFirstActive) {
                     isPlayerFirstActive = !isPlayerFirstActive
@@ -143,7 +143,7 @@ fun HomeScreen() {
         ) {
             Text(
                 text = formatTime(timeLeftPlayerSecond),
-                style = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.ctTypography.timerActivated else ChessTheme.ctTypography.timer
+                style = if (!isPlayerFirstActive && isTimerRunning) ChessTheme.typography.timerActivated else ChessTheme.typography.timer
             )
         }
     }

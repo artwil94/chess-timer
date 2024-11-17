@@ -55,22 +55,22 @@ fun TimeBottomSheet(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.dialogPadding))
+            Spacer(modifier = Modifier.height(ChessTheme.dimensions.dialogPadding))
             Text(
                 modifier = Modifier.align(Alignment.Start),
                 text = title,
-                style = ChessTheme.ctTypography.timeBottomSheetTitle
+                style = ChessTheme.typography.timeBottomSheetTitle
             )
-            Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingL))
+            Spacer(modifier = Modifier.height(ChessTheme.dimensions.paddingL))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = ChessTheme.ctDimensions.padding),
+                    .padding(end = ChessTheme.dimensions.padding),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     text = stringResource(id = R.string.equal_time_for_both_players),
-                    style = ChessTheme.ctTypography.confirmationDialogMessage
+                    style = ChessTheme.typography.confirmationDialogMessage
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Icon(
@@ -81,19 +81,19 @@ fun TimeBottomSheet(
                     contentDescription = null
                 )
             }
-            Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingXL))
+            Spacer(modifier = Modifier.height(ChessTheme.dimensions.paddingXL))
             if (equalTimeForBothPlayers.not()) {
                 Text(
                     text = stringResource(id = R.string.player_first),
-                    style = ChessTheme.ctTypography.confirmationDialogTitle,
+                    style = ChessTheme.typography.confirmationDialogTitle,
                     modifier = Modifier.align(Alignment.Start)
                 )
-                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.padding))
+                Spacer(modifier = Modifier.height(ChessTheme.dimensions.padding))
             }
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(ChessTheme.ctDimensions.paddingS),
-                verticalArrangement = Arrangement.spacedBy(ChessTheme.ctDimensions.padding),
+                horizontalArrangement = Arrangement.spacedBy(ChessTheme.dimensions.paddingS),
+                verticalArrangement = Arrangement.spacedBy(ChessTheme.dimensions.padding),
             ) {
                 times.forEachIndexed { index, time ->
                     TimePill(
@@ -106,17 +106,17 @@ fun TimeBottomSheet(
                 }
             }
             if (equalTimeForBothPlayers.not()) {
-                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.padding))
+                Spacer(modifier = Modifier.height(ChessTheme.dimensions.padding))
                 Text(
                     text = stringResource(id = R.string.player_second),
-                    style = ChessTheme.ctTypography.confirmationDialogTitle,
+                    style = ChessTheme.typography.confirmationDialogTitle,
                     modifier = Modifier.align(Alignment.Start)
                 )
-                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.padding))
+                Spacer(modifier = Modifier.height(ChessTheme.dimensions.padding))
                 FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(ChessTheme.ctDimensions.paddingS),
-                    verticalArrangement = Arrangement.spacedBy(ChessTheme.ctDimensions.padding),
+                    horizontalArrangement = Arrangement.spacedBy(ChessTheme.dimensions.paddingS),
+                    verticalArrangement = Arrangement.spacedBy(ChessTheme.dimensions.padding),
                 ) {
                     times.forEachIndexed { index, time ->
                         TimePill(
@@ -138,17 +138,17 @@ fun TimeBottomSheet(
                         onChangeTimeForSecondPlayer.invoke(selectedTimePlayer2.intValue)
                     }
                 },
-                color = ChessTheme.ctColors.timerActivated
+                color = ChessTheme.colors.timerActivated
             )
-            Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.padding))
+            Spacer(modifier = Modifier.height(ChessTheme.dimensions.padding))
             ActionButton(
                 text = stringResource(id = R.string.cancel),
                 onClick = {
                     onDismiss.invoke()
                 },
-                color = ChessTheme.ctColors.textPrimary
+                color = ChessTheme.colors.textPrimary
             )
-            Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingMedium))
+            Spacer(modifier = Modifier.height(ChessTheme.dimensions.paddingMedium))
         }
     }
 }

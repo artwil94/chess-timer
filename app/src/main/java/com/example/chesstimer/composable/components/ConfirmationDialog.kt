@@ -36,40 +36,40 @@ fun ConfirmationDialog(
             modifier = Modifier
                 .background(
                     color = Color.White,
-                    shape = ChessTheme.ctShapes.confirmationDialog
+                    shape = ChessTheme.shapes.confirmationDialog
                 )
         ) {
             Column(
                 modifier = Modifier.padding(
-                    ChessTheme.ctDimensions.paddingMedium,
+                    ChessTheme.dimensions.paddingMedium,
                 ),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
                     text = title,
-                    style = ChessTheme.ctTypography.confirmationDialogTitle
+                    style = ChessTheme.typography.confirmationDialogTitle
                 )
                 message?.let {
-                    Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.padding))
+                    Spacer(modifier = Modifier.height(ChessTheme.dimensions.padding))
                     Text(
                         text = message,
-                        style = ChessTheme.ctTypography.confirmationDialogMessage
+                        style = ChessTheme.typography.confirmationDialogMessage
                     )
                 }
-                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingL))
+                Spacer(modifier = Modifier.height(ChessTheme.dimensions.paddingL))
                 ActionButton(
                     modifier = Modifier.fillMaxWidth(),
                     text = confirmText,
                     onClick = { onConfirm.invoke() },
-                    color = ChessTheme.ctColors.timerActivated
+                    color = ChessTheme.colors.timerActivated
                 )
-                Spacer(modifier = Modifier.height(ChessTheme.ctDimensions.paddingM))
+                Spacer(modifier = Modifier.height(ChessTheme.dimensions.paddingM))
                 cancelText?.let {
                     ActionButton(
                         modifier = Modifier.fillMaxWidth(),
                         text = cancelText,
                         onClick = { onCancel.invoke() },
-                        color = ChessTheme.ctColors.textPrimary
+                        color = ChessTheme.colors.textPrimary
                     )
                 }
             }

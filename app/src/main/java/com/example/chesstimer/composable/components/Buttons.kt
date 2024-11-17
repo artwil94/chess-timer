@@ -23,7 +23,7 @@ import com.example.chesstimer.ui.theme.ChessTheme
 fun ActionButton(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = ChessTheme.ctColors.actionButton,
+    color: Color = ChessTheme.colors.actionButton,
     @DrawableRes leadingIcon: Int? = null,
     onClick: () -> Unit
 ) {
@@ -48,11 +48,11 @@ fun ActionButton(
                     contentDescription = "",
                     tint = Color.Black
                 )
-                Spacer(modifier = Modifier.width(ChessTheme.ctDimensions.paddingXs))
+                Spacer(modifier = Modifier.width(ChessTheme.dimensions.paddingXs))
             }
             Text(
                 text = text.uppercase(),
-                style =  ChessTheme.ctTypography.actionButtonWhite
+                style =  ChessTheme.typography.actionButtonWhite
             )
         }
     }

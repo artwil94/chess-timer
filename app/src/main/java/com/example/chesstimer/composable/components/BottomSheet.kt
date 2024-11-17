@@ -37,7 +37,7 @@ fun BottomSheet(
             Column(
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.navigationBars)
-                    .padding(horizontal = ChessTheme.ctDimensions.paddingL)
+                    .padding(horizontal = ChessTheme.dimensions.paddingL)
                     .then(modifier)
             ) {
                 content.invoke()

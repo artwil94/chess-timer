@@ -24,8 +24,8 @@ fun TimePill(
         modifier = Modifier
             .width(100.dp)
             .background(
-                color = if (selected) ChessTheme.ctColors.timerActivated else Color.LightGray,
-                shape = ChessTheme.ctShapes.timePill
+                color = if (selected) ChessTheme.colors.timerActivated else Color.LightGray,
+                shape = ChessTheme.shapes.timePill
             )
             .clickable {
                 onClick.invoke()
@@ -34,14 +34,14 @@ fun TimePill(
     ) {
         Text(
             modifier = Modifier.padding(
-                start = ChessTheme.ctDimensions.paddingM,
-                end = ChessTheme.ctDimensions.paddingM,
-                top = ChessTheme.ctDimensions.paddingS,
-                bottom = ChessTheme.ctDimensions.paddingS
+                start = ChessTheme.dimensions.paddingM,
+                end = ChessTheme.dimensions.paddingM,
+                top = ChessTheme.dimensions.paddingS,
+                bottom = ChessTheme.dimensions.paddingS
             ),
             text = text,
-            style = if (selected) ChessTheme.ctTypography.timePillSelected
-            else ChessTheme.ctTypography.timePill
+            style = if (selected) ChessTheme.typography.timePillSelected
+            else ChessTheme.typography.timePill
         )
     }
 }
