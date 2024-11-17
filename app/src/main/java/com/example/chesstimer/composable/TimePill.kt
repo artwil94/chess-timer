@@ -14,12 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.chesstimer.ui.theme.ChessTheme
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
-@Composable
-fun TimePillPreview() {
-    TimePill(text = "5:00")
-}
-
 @Composable
 fun TimePill(
     text: String,
@@ -50,4 +44,10 @@ fun TimePill(
             else ChessTheme.ctTypography.timePill
         )
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
+@Composable
+private fun TimePillPreview() {
+    TimePill(text = "5:00")
 }
