@@ -9,9 +9,6 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import com.example.chesstimer.R
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -61,12 +58,3 @@ object ChessTheme {
         @Composable get() = Shapes()
 
 }
-
-data class Fonts(
-    val freigeistMedium: FontFamily = FontFamily(Font(R.font.freigeist_xconmedium)),
-    val freigeistBold: FontFamily = FontFamily(Font(R.font.freigeist_xconbold)),
-    val robotoMedium: FontFamily = FontFamily(Font(R.font.roboto_medium)),
-    val robotoBold: FontFamily = FontFamily(Font(R.font.roboto_bold)),
-    val robotoLight: FontFamily = FontFamily(Font(R.font.roboto_light)),
-    val robotoRegular: FontFamily = FontFamily(Font(R.font.roboto_regular))
-)
